@@ -1,0 +1,60 @@
+.h1 Welcome EveryBody
+h2 = "good"
+.list-group
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+.list-group
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+  =link_to "hello world!",say_hello_path, class:"list-group-item"
+  .list-group-item
+    | nihao
+    |  <br/>Hi
+.container-fluid
+  .row.border
+    .col-md-2= "aa1"
+    .col-md-1= "aa2"
+    .col-md-1= "aa3"
+  .row
+    .col-md-1
+      | bb
+    .col-md-1
+      | bb
+    .col-md-1
+      | bb
+    .col-md-1
+      | bb
+.table
+  .row
+    .col-md-1
+      | bb
+    .col-md-1
+      | bb
+    .col-md-1
+      | bb
+
+p class="glyphicon glyphicon-star"
+=button_to "back",action:"say",method: :get
+=link_to "back",action:"say",method: :get
+
+=link_to "btn-default",say_hello_path,class:"btn btn-default btn-lg",disabled:"disabled"
+p
+=link_to "btn-primary",say_hello_path,class:"btn btn-primary btn-sm"
+p
+=link_to "btn-success",say_hello_path,class:"btn btn-success btn-xs"
+p
+=link_to "btn-info",say_hello_path,class:"btn btn-info"
+p
+=link_to "btn-warning",say_hello_path,class:"btn btn-warning"
+p
+=link_to "btn-danger",say_hello_path,class:"btn btn-danger"
+p
+=link_to "btn-link",say_hello_path,class:"btn btn-link"
+
+=image_tag "avatars/1.jpg",class:"img-rounded"
+img  class="img-rounded" src="/assets/avatars/1.jpg" width="50px"
+img  class="img-circle" src="/assets/avatars/1.jpg"
+img  class="img-thumbnail" src="/assets/avatars/1.jpg"
+
+

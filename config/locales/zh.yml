@@ -1,0 +1,14 @@
+zh:
+  hello: "Hello world"
+  layouts:
+    application:
+      title: "Hanks在线书店"
+      home: "主页"
+      questions: "问题"
+      news: "新闻"
+      contact: "联系我们"
+
+  store:
+    index:
+      title_html: "在线商品列表"
+      add_html: "加入购物车"
