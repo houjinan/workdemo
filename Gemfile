@@ -40,6 +40,9 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
+gem 'newrelic_rpm'
+
+gem 'thin'
 
 group :production do
   gem 'mysql'
@@ -48,6 +51,10 @@ end
 group :development ,:test do
   gem 'rspec-rails'
 
+  gem 'capistrano', '3.2.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 end
 
 group :test do

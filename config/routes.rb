@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'say/goodbye'
     get 'say/say'
 
+    resources :students
     get 'articles/index'
     root :to => 'store#index', :as => 'store'
   end
