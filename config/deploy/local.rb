@@ -1,5 +1,5 @@
 set :stage, :local
-set :server_name, "192.168.1.148"
+set :server_name, "local.dev"
 
 set :branch, "master"
 
@@ -7,7 +7,7 @@ set :log_level, :debug
 set :deploy_to, "/home/houjn/site/workdemo"
 
 set :thin_config, "#{shared_path}/config/thin.yml"
-set :thin_pid, "#{shared_path}/tmp/pids/thin.0.pid"
+set :thin_pid, "#{shared_path}/tmp/pids/thin.3000.pid"
 
 
 

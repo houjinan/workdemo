@@ -23,10 +23,10 @@ set :log_level, :debug
 set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/thin.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -38,21 +38,41 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+    invoke :"deploy:stop"
+    invoke :"deploy:start"
+  end
+
+  task :start do 
+    invoke :"rvm:hook"
+    on roles :app do
+      within current_path do
+        unless test("[ -f #{fetch(:thin_pid)} ]")
+          info ">>>>>> starting thin"
+          execute :bundle, "exec thin start -C #{fetch(:thin_config)}"
+        else
+          error ">>>>>> thin already started"
+        end
+      end
+    end
+  end
+  
+  task :stop do 
+    on roles :app do
+      within current_path do
+        if test("[ -f #{fetch(:thin_pid)} ]")
+          info ">>>>>> stopping thin"
+          execute :bundle, "exec thin stop -C #{fetch(:thin_config)}"
+        else
+          error ">>>>>> can not stop. there is no started thin"
+        end
+      end
     end
   end
 
   after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
 end
+
+before "deploy:cleanup_assets", "rvm:hook"
+before "deploy:compile_assets", "rvm:hook"
+before "bundler:install", "rvm:hook"
+after "deploy:publishing", "deploy:restart"
