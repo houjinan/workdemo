@@ -6,8 +6,9 @@ set :branch, "master"
 set :log_level, :debug
 set :deploy_to, "/home/houjn/site/workdemo"
 
+set :thin_port, 3000
 set :thin_config, "#{shared_path}/config/thin.yml"
-set :thin_pid, "#{shared_path}/tmp/pids/thin.3000.pid"
+set :thin_pid, "#{shared_path}/tmp/pids/thin.#{fetch(:thin_port)}.pid"
 
 
 
