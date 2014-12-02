@@ -1,4 +1,4 @@
-set :stage, :local
+set :stage, :local82
 set :server_name, "192.168.1.82"
 
 set :branch, "master"
