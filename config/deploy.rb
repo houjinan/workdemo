@@ -33,7 +33,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
-
+set :ssh_options, {:forward_agent:true}
 namespace :deploy do
 
   desc 'Restart application'
